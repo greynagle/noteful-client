@@ -1,6 +1,7 @@
 import React from "react";
 import ApiContext from "../ApiContext";
 import "./AddNote.css";
+import PropTypes from 'prop-types'
 
 export default class AddNote extends React.Component {
     state = {
@@ -44,6 +45,9 @@ export default class AddNote extends React.Component {
         e.preventDefault();
         if (this.state.noteLabel.trim()===""){
 			return console.error('Name field required')
+		}
+		if (this.state.noteContent.trim()===""){
+			return console.error('Note content required')
 		}
         fetch("https://helloacm.com/api/random/?n=16")
             .then((res) => res.json())
@@ -105,6 +109,7 @@ export default class AddNote extends React.Component {
                         value={this.state.noteContent}
                         onChange={this.handleContentChange}
                         autoComplete="off"
+						required
                     />
                     <br />
                     <label htmlFor="folder_choice" />
@@ -136,3 +141,8 @@ export default class AddNote extends React.Component {
         );
     }
 }
+
+AddNote.propTypes = {
+    history: PropTypes.object,
+    match: PropTypes.object,
+};
