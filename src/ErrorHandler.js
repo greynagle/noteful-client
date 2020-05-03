@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types'
 
 export default class ErrorHandler extends Component {
     constructor(props) {
@@ -20,4 +21,11 @@ export default class ErrorHandler extends Component {
     }
 }
 
+ErrorHandler.propTypes={
+	children: PropTypes.oneOfType([
+		PropTypes.node,
+		PropTypes.array,
+		PropTypes.object
+	])
+}
 
